@@ -9,8 +9,7 @@ botaoAdicionar.addEventListener("click", function(){
     var erros = validaPaciente(paciente);
 
     if (erros.length > 0){
-        var mensagemErro = document.querySelector("#mensagem-erro");
-        mensagemErro.textContent = erros;
+        exibeMensagensDeErro(erros);
         return;
     }
 
@@ -20,8 +19,21 @@ botaoAdicionar.addEventListener("click", function(){
     tabela.appendChild(pacienteTr)
 
     form.reset();
+    var mensagensErro = document.querySelector("#mensagens-erro");
+    mensagensErro.innerHTML = "";
 
-})
+});
+
+function exibeMensagensDeErro(erros){
+    var ul = document.querySelector("#mensagens-erro");
+    ul.innerHTML = "";
+
+    erros.forEach(function(erro){
+        var li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+}
 
 
 function obtemPacienteDoFormulario(form) {
@@ -62,8 +74,16 @@ function validaPaciente(paciente){
 
     var erros = [];
 
-    if(!validaPeso(paciente.peso)) erros.push("Peso é inválido!");
-    if(!validaAltura(paciente.altura)) erros.push("Altura e inválida!");
+    if(paciente.nome.length == 0){
+        erros.push("Preencha o nome")}
+    if(!validaPeso(paciente.peso)) erros.push("Peso inválido");
+    if(!validaAltura(paciente.altura)) erros.push("Altura inválida");
+    if(paciente.peso.length == 0){
+        erros.push("Preencha o peso")}
+    if(paciente.altura.length == 0){
+        erros.push("Preencha a altura")}
+    if(paciente.gordura.length == 0){
+        erros.push("Preencha o percentual de gordura")}
 
     return erros;
 }
