@@ -91,7 +91,7 @@ label{
 }
 
 .grupo{
-	width: 32%;
+	width: 32.5%;
 	display: inline-block;
 	padding: 10px 0px;
 }
@@ -144,4 +144,13 @@ button[disabled=disabled], button:disabled {
 .fadeOut {
 	opacity: 0;
 	transition: 0.5s;
+
+#filtrar-tabela {
+	width: 200px;
+	height: 35px;
+	margin-bottom: 10px;
+}
+
+.invisivel {
+	display: none;
 }
